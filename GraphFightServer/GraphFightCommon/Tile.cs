@@ -2,20 +2,20 @@
 {
     public class Tile
     {
-        private readonly TileMovementFlags _movementFlags;
+        public TileMovementFlags MovementFlags { get; }
 
         public Tile()
         {
-            _movementFlags = TileMovementFlags.None;
+            MovementFlags = TileMovementFlags.None;
         }
 
         public Tile(TileMovementFlags movementFlags)
         {
-            _movementFlags = movementFlags;
+            MovementFlags = movementFlags;
         }
 
-        public bool IsPassable => (_movementFlags & TileMovementFlags.Passable) == TileMovementFlags.Passable;
-        public bool IsStandable => (_movementFlags & TileMovementFlags.Standable) == TileMovementFlags.Standable;
-        public bool IsBulletPassable => (_movementFlags & TileMovementFlags.BulletPassable) == TileMovementFlags.BulletPassable;
+        public bool IsPassable => (MovementFlags & TileMovementFlags.Passable) == TileMovementFlags.Passable;
+        public bool IsStandable => (MovementFlags & TileMovementFlags.Standable) == TileMovementFlags.Standable;
+        public bool IsBulletPassable => (MovementFlags & TileMovementFlags.BulletPassable) == TileMovementFlags.BulletPassable;
     }
 }
