@@ -9,12 +9,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - working-directory: ./GraphFightServer
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.108
     - name: Build with dotnet
+      working-directory: ./GraphFightServer
       run: dotnet build --configuration Release
     - name: Run Tests with NUnit 3
+      working-directory: ./GraphFightServer
       run: dotnet test
