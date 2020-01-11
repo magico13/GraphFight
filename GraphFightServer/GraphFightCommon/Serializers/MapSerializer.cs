@@ -1,4 +1,8 @@
-﻿using System.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GraphFightCommon.Serializers
 {
@@ -13,7 +17,18 @@ namespace GraphFightCommon.Serializers
                 Tiles = map.Tiles.Select(w => w.Select(h => h.Id))
             };
 
-            return Newtonsoft.Json.JsonConvert.SerializeObject(toSerialize);
+            return JsonConvert.SerializeObject(toSerialize);
+        }
+
+        public static Map Deserialize(string source, IEnumerable<Tile> tiles)
+        {
+            JObject obj = JObject.Parse(source);
+            var ints = (obj.GetValue("Tiles") as JArray).ToObject<IEnumerable<IEnumerable<int>>>();
+
+            IEnumerable<IEnumerable<Tile>> intToTiles = ints.Select(l => l.Select(i => tiles.First(t => t.Id == i)));
+
+            return new Map(intToTiles);
+            //return null;
         }
     }
 }

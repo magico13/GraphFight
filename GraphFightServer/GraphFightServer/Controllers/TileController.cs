@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GraphFightCommon;
-using GraphFightCommon.Serializers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,18 +9,17 @@ namespace GraphFightServer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MapController : ControllerBase
+    public class TileController : ControllerBase
     {
-        public string GetMap()
+        public string GetTiles()
         {
-            return MapSerializer.Serialize(MasterGameController.TheGame.Map);
+            return string.Empty;
         }
 
-        public IActionResult SetMap([FromBody] string map)
+        [Route("api/[controller]/[id]")]
+        public string GetTile([FromRoute]int id)
         {
-
-
-            return Ok();
+            return id.ToString();
         }
     }
 }
