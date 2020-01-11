@@ -8,11 +8,11 @@ namespace GraphFightCommonTests.Serializers
     [TestFixture]
     public class MapSerializerTests
     {
-        [Test, Ignore("WIP")]
+        [Test]
         public void MapSerializesToJson()
         {
             //2x4 map
-            Tile tile = new Tile();
+            Tile tile = new Tile(1, TileMovementFlags.None);
             List<List<Tile>> tiles = new List<List<Tile>>();
             tiles.Add(new List<Tile> { tile, tile, tile, tile });
             tiles.Add(new List<Tile> { tile, tile, tile, tile });

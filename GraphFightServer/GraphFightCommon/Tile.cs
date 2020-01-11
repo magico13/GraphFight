@@ -3,15 +3,18 @@
     public class Tile
     {
         public TileMovementFlags MovementFlags { get; }
+        public int Id { get; }
 
         public Tile()
         {
             MovementFlags = TileMovementFlags.None;
+            Id = 0;
         }
 
-        public Tile(TileMovementFlags movementFlags)
+        public Tile(int id, TileMovementFlags movementFlags)
         {
             MovementFlags = movementFlags;
+            Id = id;
         }
 
         public bool IsPassable => (MovementFlags & TileMovementFlags.Passable) == TileMovementFlags.Passable;

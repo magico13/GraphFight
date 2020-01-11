@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Linq;
 
 namespace GraphFightCommon.Serializers
 {
@@ -8,7 +6,14 @@ namespace GraphFightCommon.Serializers
     {
         public static string Serialize(Map map)
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(map);
+            var toSerialize = new
+            {
+                map.Width,
+                map.Height,
+                Tiles = map.Tiles.Select(w => w.Select(h => h.Id))
+            };
+
+            return Newtonsoft.Json.JsonConvert.SerializeObject(toSerialize);
         }
     }
 }

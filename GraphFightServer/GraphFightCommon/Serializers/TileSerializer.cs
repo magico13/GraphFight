@@ -6,7 +6,7 @@ namespace GraphFightCommon.Serializers
     {
         public static string Serialize(Tile tile)
         {
-            return JsonConvert.SerializeObject(new { tile.MovementFlags });
+            return JsonConvert.SerializeObject(new { tile.Id, tile.MovementFlags });
         }
     }
 }

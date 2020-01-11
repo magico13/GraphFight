@@ -22,7 +22,7 @@ namespace GraphFightCommonTests
         [Test]
         public void NoneIsFullyBlocking()
         {
-            Tile tile = new Tile(TileMovementFlags.None);
+            Tile tile = new Tile(1, TileMovementFlags.None);
             Assert.That(tile.IsPassable, Is.False);
             Assert.That(tile.IsStandable, Is.False);
             Assert.That(tile.IsBulletPassable, Is.False);
@@ -31,7 +31,7 @@ namespace GraphFightCommonTests
         [Test]
         public void CanSetTileToPassable()
         {
-            Tile tile = new Tile(TileMovementFlags.Passable);
+            Tile tile = new Tile(1, TileMovementFlags.Passable);
             Assert.That(tile.IsPassable, Is.True);
             Assert.That(tile.IsStandable, Is.False);
             Assert.That(tile.IsBulletPassable, Is.False);
@@ -40,7 +40,7 @@ namespace GraphFightCommonTests
         [Test]
         public void CanSetTileToStandable()
         {
-            Tile tile = new Tile(TileMovementFlags.Standable);
+            Tile tile = new Tile(1, TileMovementFlags.Standable);
             Assert.That(tile.IsPassable, Is.False);
             Assert.That(tile.IsStandable, Is.True);
             Assert.That(tile.IsBulletPassable, Is.False);
@@ -49,7 +49,7 @@ namespace GraphFightCommonTests
         [Test]
         public void CanSetTileToBulletPassable()
         {
-            Tile tile = new Tile(TileMovementFlags.BulletPassable);
+            Tile tile = new Tile(1, TileMovementFlags.BulletPassable);
             Assert.That(tile.IsPassable, Is.False);
             Assert.That(tile.IsStandable, Is.False);
             Assert.That(tile.IsBulletPassable, Is.True);
@@ -58,7 +58,7 @@ namespace GraphFightCommonTests
         [Test]
         public void CanSetTwoMovementFlags()
         {
-            Tile tile = new Tile(TileMovementFlags.Passable | TileMovementFlags.BulletPassable);
+            Tile tile = new Tile(1, TileMovementFlags.Passable | TileMovementFlags.BulletPassable);
             Assert.That(tile.IsPassable, Is.True);
             Assert.That(tile.IsStandable, Is.False);
             Assert.That(tile.IsBulletPassable, Is.True);
@@ -67,10 +67,18 @@ namespace GraphFightCommonTests
         [Test]
         public void CanSetThreeMovementFlags()
         {
-            Tile tile = new Tile(TileMovementFlags.Passable | TileMovementFlags.BulletPassable | TileMovementFlags.Standable);
+            Tile tile = new Tile(1, TileMovementFlags.Passable | TileMovementFlags.BulletPassable | TileMovementFlags.Standable);
             Assert.That(tile.IsPassable, Is.True);
             Assert.That(tile.IsStandable, Is.True);
             Assert.That(tile.IsBulletPassable, Is.True);
+        }
+
+        [Test]
+        public void UsesIdPassed()
+        {
+            int id = 123;
+            Tile tile = new Tile(id, TileMovementFlags.None);
+            Assert.That(tile.Id, Is.EqualTo(id));
         }
     }
 }

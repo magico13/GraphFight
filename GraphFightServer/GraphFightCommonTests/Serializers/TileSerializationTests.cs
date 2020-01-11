@@ -10,10 +10,10 @@ namespace GraphFightCommonTests.Serializers
         [Test]
         public void TileSerializesToJson()
         {
-            Tile tile = new Tile(TileMovementFlags.BulletPassable | TileMovementFlags.Passable);
+            Tile tile = new Tile(123, TileMovementFlags.BulletPassable | TileMovementFlags.Passable);
             string serialized = TileSerializer.Serialize(tile);
 
-            string expected = "{\"MovementFlags\":5}";
+            string expected = "{\"Id\":123,\"MovementFlags\":5}";
             Assert.That(serialized, Is.EqualTo(expected));
         }
     }
