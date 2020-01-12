@@ -23,12 +23,11 @@ namespace GraphFightCommon.Serializers
         public static Map Deserialize(string source, IEnumerable<Tile> tiles)
         {
             JObject obj = JObject.Parse(source);
-            var ints = (obj.GetValue("Tiles") as JArray).ToObject<IEnumerable<IEnumerable<int>>>();
+            IEnumerable<IEnumerable<int>> ints = (obj.GetValue("Tiles") as JArray).ToObject<IEnumerable<IEnumerable<int>>>();
 
             IEnumerable<IEnumerable<Tile>> intToTiles = ints.Select(l => l.Select(i => tiles.First(t => t.Id == i)));
 
             return new Map(intToTiles);
-            //return null;
         }
     }
 }

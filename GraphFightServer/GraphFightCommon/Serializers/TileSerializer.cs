@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace GraphFightCommon.Serializers
 {
@@ -6,7 +7,12 @@ namespace GraphFightCommon.Serializers
     {
         public static string Serialize(Tile tile)
         {
-            return JsonConvert.SerializeObject(new { tile.Id, tile.MovementFlags });
+            return JsonConvert.SerializeObject(tile);
+        }
+
+        public static string SerializeList(List<Tile> list)
+        {
+            return JsonConvert.SerializeObject(list);
         }
     }
 }

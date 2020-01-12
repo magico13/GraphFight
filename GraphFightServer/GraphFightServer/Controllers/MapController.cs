@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GraphFightCommon;
+﻿using GraphFightCommon;
 using GraphFightCommon.Serializers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GraphFightServer.Controllers
@@ -20,7 +15,7 @@ namespace GraphFightServer.Controllers
 
         public IActionResult SetMap([FromBody] string map)
         {
-
+            MasterGameController.TheGame.Map = MapSerializer.Deserialize(map, null);
 
             return Ok();
         }

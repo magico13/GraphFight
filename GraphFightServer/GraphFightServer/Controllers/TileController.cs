@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using GraphFightCommon;
+using GraphFightCommon.Serializers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GraphFightServer.Controllers
@@ -13,13 +10,14 @@ namespace GraphFightServer.Controllers
     {
         public string GetTiles()
         {
-            return string.Empty;
+            return TileSerializer.SerializeList(MasterGameController.TheGame.Tiles);
         }
 
         [Route("api/[controller]/[id]")]
         public string GetTile([FromRoute]int id)
         {
-            return id.ToString();
+            Tile tile = MasterGameController.TheGame.Tiles.Find(t => t.Id == id);
+            return TileSerializer.Serialize(tile);
         }
     }
 }

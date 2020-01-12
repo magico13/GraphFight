@@ -1,4 +1,6 @@
-﻿namespace GraphFightCommon
+﻿using Newtonsoft.Json;
+
+namespace GraphFightCommon
 {
     public class Tile
     {
@@ -17,8 +19,11 @@
             Id = id;
         }
 
+        [JsonIgnore]
         public bool IsPassable => (MovementFlags & TileMovementFlags.Passable) == TileMovementFlags.Passable;
+        [JsonIgnore]
         public bool IsStandable => (MovementFlags & TileMovementFlags.Standable) == TileMovementFlags.Standable;
+        [JsonIgnore]
         public bool IsBulletPassable => (MovementFlags & TileMovementFlags.BulletPassable) == TileMovementFlags.BulletPassable;
     }
 }
