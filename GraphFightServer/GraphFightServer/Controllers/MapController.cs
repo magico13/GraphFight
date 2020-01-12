@@ -8,14 +8,18 @@ namespace GraphFightServer.Controllers
     [ApiController]
     public class MapController : ControllerBase
     {
-        public string GetMap()
+        public ActionResult<string> GetMap()
         {
+            if (MasterGameController.TheGame.Map == null)
+            {
+                return NotFound();
+            }
             return MapSerializer.Serialize(MasterGameController.TheGame.Map);
         }
 
-        public IActionResult SetMap([FromBody] string map)
+        public ActionResult SetMap([FromBody] string map)
         {
-            MasterGameController.TheGame.Map = MapSerializer.Deserialize(map, null);
+            MasterGameController.TheGame.Map = MapSerializer.Deserialize(map, MasterGameController.TheGame.Tiles);
 
             return Ok();
         }

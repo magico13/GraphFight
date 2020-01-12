@@ -4,8 +4,8 @@ namespace GraphFightCommon
 {
     public class Tile
     {
-        public TileMovementFlags MovementFlags { get; }
-        public int Id { get; }
+        public TileMovementFlags MovementFlags { get; set; }
+        public int Id { get; set; }
 
         public Tile()
         {
@@ -25,5 +25,10 @@ namespace GraphFightCommon
         public bool IsStandable => (MovementFlags & TileMovementFlags.Standable) == TileMovementFlags.Standable;
         [JsonIgnore]
         public bool IsBulletPassable => (MovementFlags & TileMovementFlags.BulletPassable) == TileMovementFlags.BulletPassable;
+
+        public override string ToString()
+        {
+            return $"{Id} - {MovementFlags}";
+        }
     }
 }

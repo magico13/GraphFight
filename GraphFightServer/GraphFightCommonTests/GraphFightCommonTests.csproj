@@ -16,4 +16,10 @@
     <ProjectReference Include="..\GraphFightCommon\GraphFightCommon.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestFiles\Tiles.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

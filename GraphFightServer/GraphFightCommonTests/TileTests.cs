@@ -80,5 +80,13 @@ namespace GraphFightCommonTests
             Tile tile = new Tile(id, TileMovementFlags.None);
             Assert.That(tile.Id, Is.EqualTo(id));
         }
+
+        [Test]
+        public void ToStringDisplaysHumanReadable()
+        {
+            Tile tile = new Tile(123, TileMovementFlags.BulletPassable | TileMovementFlags.Passable);
+            string tostring = tile.ToString();
+            Assert.That(tostring, Is.EqualTo("123 - Passable, BulletPassable"));
+        }
     }
 }
