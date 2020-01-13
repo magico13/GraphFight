@@ -1,21 +1,34 @@
-﻿namespace GraphFightCommon
+﻿using Newtonsoft.Json;
+
+namespace GraphFightCommon
 {
     public class Tile
     {
-        private readonly TileMovementFlags _movementFlags;
+        public TileMovementFlags MovementFlags { get; set; }
+        public int Id { get; set; }
 
         public Tile()
         {
-            _movementFlags = TileMovementFlags.None;
+            MovementFlags = TileMovementFlags.None;
+            Id = 0;
         }
 
-        public Tile(TileMovementFlags movementFlags)
+        public Tile(int id, TileMovementFlags movementFlags)
         {
-            _movementFlags = movementFlags;
+            MovementFlags = movementFlags;
+            Id = id;
         }
 
-        public bool IsPassable => (_movementFlags & TileMovementFlags.Passable) == TileMovementFlags.Passable;
-        public bool IsStandable => (_movementFlags & TileMovementFlags.Standable) == TileMovementFlags.Standable;
-        public bool IsBulletPassable => (_movementFlags & TileMovementFlags.BulletPassable) == TileMovementFlags.BulletPassable;
+        [JsonIgnore]
+        public bool IsPassable => (MovementFlags & TileMovementFlags.Passable) == TileMovementFlags.Passable;
+        [JsonIgnore]
+        public bool IsStandable => (MovementFlags & TileMovementFlags.Standable) == TileMovementFlags.Standable;
+        [JsonIgnore]
+        public bool IsBulletPassable => (MovementFlags & TileMovementFlags.BulletPassable) == TileMovementFlags.BulletPassable;
+
+        public override string ToString()
+        {
+            return $"{Id} - {MovementFlags}";
+        }
     }
 }
