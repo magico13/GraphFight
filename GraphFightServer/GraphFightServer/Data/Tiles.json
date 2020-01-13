@@ -1,0 +1,14 @@
+﻿[
+  {
+    "Id": 1,
+    "MovementFlags": 7
+  },
+  {
+    "Id": 2,
+    "MovementFlags": 4
+  },
+  {
+    "Id": 3,
+    "MovementFlags": 0
+  }
+]

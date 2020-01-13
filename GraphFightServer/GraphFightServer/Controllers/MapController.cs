@@ -1,6 +1,12 @@
 ﻿using GraphFightCommon;
 using GraphFightCommon.Serializers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace GraphFightServer.Controllers
 {
@@ -8,19 +14,24 @@ namespace GraphFightServer.Controllers
     [ApiController]
     public class MapController : ControllerBase
     {
-        public ActionResult<string> GetMap()
+        [HttpGet]
+        public async Task<ActionResult<string>> GetMap()
         {
             if (MasterGameController.TheGame.Map == null)
             {
                 return NotFound();
             }
-            return MapSerializer.Serialize(MasterGameController.TheGame.Map);
+            return await Task.Run(() => MapSerializer.Serialize(MasterGameController.TheGame.Map));
         }
 
-        public ActionResult SetMap([FromBody] string map)
+        [HttpPost]
+        public async Task<ActionResult> SetMap()
         {
-            MasterGameController.TheGame.Map = MapSerializer.Deserialize(map, MasterGameController.TheGame.Tiles);
-
+            using (StreamReader streamReader = new StreamReader(Request.Body, Encoding.UTF8))
+            {
+                string json = await streamReader.ReadToEndAsync();
+                await Task.Run(() => MasterGameController.TheGame.Map = MapSerializer.Deserialize(json, MasterGameController.TheGame.Tiles));
+            }
             return Ok();
         }
     }
