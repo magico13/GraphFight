@@ -11,6 +11,9 @@ namespace GraphFightCommon
         public int Movement { get; set; }
         public int MaxMovement { get; set; }
 
+        public int PosX { get; set; }
+        public int PosY { get; set; }
+
         public Weapon Weapon { get; set; }
 
         public Pawn(Weapon weapon, int health = 1, int move = 3)

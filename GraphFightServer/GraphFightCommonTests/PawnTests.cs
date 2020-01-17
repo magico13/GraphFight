@@ -30,5 +30,18 @@ namespace GraphFightCommonTests
             Assert.That(pawn.Weapon.Damage, Is.EqualTo(2));
             Assert.That(pawn.Weapon.Accuracy, Is.EqualTo(0.2));
         }
+
+        [Test]
+        public void PawnHasPosition()
+        {
+            Pawn pawn = new Pawn(null)
+            {
+                PosX = 5,
+                PosY = 2
+            };
+
+            Assert.That(pawn.PosX, Is.EqualTo(5));
+            Assert.That(pawn.PosY, Is.EqualTo(2));
+        }
     }
 }
