@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace GraphFightCommon
 {
@@ -8,5 +6,6 @@ namespace GraphFightCommon
     {
         public Map Map { get; set; }
         public List<Tile> Tiles { get; set; }
+        public List<List<Pawn>> Teams { get; set; }
     }
 }
